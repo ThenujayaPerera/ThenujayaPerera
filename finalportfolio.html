@@ -1,0 +1,2744 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Your Name — Portfolio</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0wL2sAEPP+l9Q+2/c03D2eP4Lz0G93y2r5e3H3G5N2y/t8/6e/l2/4F4eFg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:root{
+  --bg:#000000;
+  --card:#0f0f10;
+  --muted:#9aa3b2;
+  --accent1:#7c3aed; 
+  --accent2:#00d2ff;
+  --glass: rgba(255,255,255,0.04);
+  --radius:14px;
+  --maxw:1100px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+  background-color: #000000;
+  overflow-x: hidden;
+  z-index: 1; 
+  color: #00d2ff;
+}
+
+/* NAVBAR */
+.nav{
+  position:sticky; top:0; z-index:30;
+  background:linear-gradient(180deg, rgba(0,0,0,0.6), transparent);
+  backdrop-filter:blur(6px)
+}
+.nav-inner{
+  display:flex; align-items:center;
+  justify-content:space-between; gap:1rem;
+  padding:0.6rem 1rem
+}
+.brand{
+  font-weight:700;
+  color:var(--accent1);
+  text-decoration:none;
+}
+.brand span{color:var(--accent2); margin-left:6px}
+.links{display:flex; gap:1rem}
+.links a{
+  color:var(--muted);
+  text-decoration:none;
+  padding:8px; border-radius:8px;
+}
+.links a:hover{color:#fff; background:rgba(255,255,255,0.05)}
+.hamburger{
+  display:none; border:0; background:none;
+  padding:8px; cursor:pointer
+}
+.hamburger span{
+  display:block; width:22px; height:2px;
+  background:#fff; margin:4px 0;
+}
+
+/* ===============================
+   RESPONSIVE MEDIA QUERIES
+   (Do NOT change your original CSS)
+   =============================== */
+
+/* 🔹TABLETS (max 992px) */
+@media (max-width: 992px) {
+
+  .hero {
+    margin-left: 0;
+    margin-top: 80px;
+    padding: 2rem 0;
+    text-align: center;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .profile,
+  .profile3,
+  .profile4 {
+    position: relative;
+    max-width: 350px;
+    margin-inline: auto;
+  }
+
+  .profile {
+    top: 0;
+    right: 0;
+  }
+
+  .profile3 {
+    left: 0;
+    top: 0;
+  }
+
+  .profile4 {
+    right: 0;
+    top: 0;
+  }
+}
+
+/* 🔹MOBILE LARGE (max 768px) */
+@media (max-width: 768px) {
+
+  .hero {
+    margin-left: 0;
+    margin-top: 60px;
+  }
+
+  .cta-row {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-inner {
+    gap: 2rem;
+    position: absolute;
+    top: -90px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hero-text h1 {
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+    
+  }
+
+  .profile,
+  .profile3,
+  .profile4 {
+    width: 80%;
+    max-width: 300px;
+  }
+}
+
+/* 🔹MOBILE SMALL (max 480px) */
+@media (max-width: 480px) {
+
+  .hero {
+    margin-left: 0;
+    margin-top: 40px;
+    padding: 1.5rem 0;
+  }
+
+  .hero-inner {
+    gap: 1.5rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.7rem;
+  }
+
+  .btn {
+    padding: .6rem .9rem;
+    font-size: .9rem;
+  }
+
+  .profile,
+  .profile3,
+  .profile4 {
+    width: 90%;
+    max-width: 260px;
+  }
+}
+
+.hero{
+  margin-top: 100px;
+  margin-left: 400px;
+  padding:3.5rem 0}
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:2.5rem;
+  align-items:center;
+}
+.hero-text h1{
+  font-size:clamp(2rem,4vw,3rem);
+  margin:0 0 .4rem;
+  font-family:'Space Grotesk',sans-serif
+}
+.subtitle{color:#ffffff; margin:0 0 1rem}
+.cta-row{display:flex;
+   gap:.8rem; 
+   margin:1rem 0;
+  color: #ffffff;
+}
+.btn{
+  display:inline-block;
+  padding:.7rem 1rem;
+  border-radius:12px;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  color:#f7f0f0; font-weight:700;
+  text-decoration:none; cursor:pointer;
+}
+.btn:hover{
+  box-shadow:0 0 15px var(--accent2);
+  transform:translateY(-2px);
+  transition:all .2s ease-in-out;
+}
+.btn.ghost{
+  background:var(--glass);
+  border:1px solid rgb(255, 255, 255);
+  color: #fffcfc;
+  background-color: #161616a0;
+}
+.btn.ghost:hover{
+  background:rgba(35, 35, 35, 0.645);
+  border-color:var(--accent2);
+  
+}
+.btn.sm{padding:.45rem .6rem; font-size:.9rem}
+
+
+.profile {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  
+   width: 500px;
+    height: auto;
+    clip-path: polygon(0 100%, 100% 100%,   100% 0);
+  
+}
+.profile4 {
+  position: absolute;
+  top: 160px;
+  right: 100px;
+  
+   width: 400px;
+  height: auto; 
+
+}
+.profile3 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  clip-path: polygon(0 0,  100% 0,   0 100%);
+   width: 500px;
+    height: auto;
+    z-index: -1; 
+}
+
+
+
+
+
+#about {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  width: 80%;
+  margin: auto;
+}
+
+#aboutText {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  min-height: 360px; 
+}
+/* ===== TABLET (max 992px) ===== */
+@media (max-width: 992px) {
+  .skillcard {
+    top: 0px;                 /* slight vertical adjust */
+    max-width: 360px;
+    padding: 35px;
+    font-size: 18px ;
+  }
+}
+
+/* ===== MOBILE LARGE (max 768px) ===== */
+@media (max-width: 768px) {
+  .skillcard {
+    position: relative;         /* stops overflow */
+    top: 20px;                  /* moves under about text */
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 330px;
+    padding: 30px;
+    font-size: 17px ;
+  }
+}
+
+/* ===== MOBILE SMALL (max 480px) ===== */
+@media (max-width: 480px) {
+  .skillcard {
+    position: relative;         /* keep centered on small phones */
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 300px;
+    padding: 25px;
+    font-size: 16px ;
+  }
+}
+
+.skillcard{
+  position: absolute;
+  top: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width:400px;
+  padding: 40px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.522), rgb(0, 0, 0));
+  border-radius: var(--radius);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+.about{
+  position: relative;
+  top: 300px;
+  left: 70px;
+  max-width:1000px;
+  padding: 40px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.522), rgb(0, 0, 0));
+  border-radius: var(--radius);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+
+
+}
+.abouttitle{
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  
+}
+
+
+/* ORBIT */
+/* ===== TABLET (max 992px) ===== */
+@media (max-width: 992px) {
+  #orbit-projects {
+    margin-top: 400px;      /* reduce huge space */
+    margin-bottom: 200px;
+  }
+}
+
+/* ===== MOBILE LARGE (max 768px) ===== */
+@media (max-width: 768px) {
+  #orbit-projects {
+    margin-top: 280px;
+    margin-bottom: 160px;
+  }
+}
+
+/* ===== MOBILE SMALL (max 480px) ===== */
+@media (max-width: 480px) {
+  #orbit-projects {
+    margin-top: 180px;      /* perfect for small phones */
+    margin-bottom: 120px;
+  }
+}
+
+#orbit-projects{
+  position: relative;
+  margin-top:  600px;
+  margin-bottom: 300px;
+
+}
+ 
+#orbit-wrapper {
+    position: relative;
+    padding-left: 300px;
+    width: 90vw;
+    height: 90vw;
+    max-width: 900px;
+    max-height: 900px;
+    perspective: 1500px;
+}
+#orbit-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+.orbit-card {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.522), rgb(0, 0, 0));
+    background-color: #2121224b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,255,255,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.orbit-card:hover{
+    transform: scale(1.4);
+    box-shadow: 0 0 50px #00ffff;
+    z-index:100;
+}
+.orbit-card img{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+}
+
+
+
+
+
+
+
+ :root {
+          --card-bg: #f8f8f8; /* Light background for the image frame (the "white inside") */
+          --film-stock: #11111163; /* Dark background for the reel track (the film body) */
+          --sprocket-tooth: #2e2e2e79; /* Darker tooth color for reinforced film edges */
+          --accent2: #00d2ff; /* Bright Cyan accent */
+          --card-width: 300px;
+          --gap-size: 2rem;
+          --sprocket-height: 1.5rem; /* Height of the simulated film track */
+        }
+
+        /* --- Global / Body Styles (Replaces Tailwind classes) --- */
+       
+
+        /* Essential container styling */
+       /* ===== TABLET (max 992px) ===== */
+@media (max-width: 992px) {
+  .projecth1 h1 {
+    
+        /* reduce left margin */
+    font-size: 22px; 
+    margin-top: -100px;      /* scale down */
+  }
+}
+
+/* ===== MOBILE LARGE (max 768px) ===== */
+@media (max-width: 768px) {
+  .projecth1 h1 {
+     
+    font-size: 26px;
+    margin-top: -100px;
+  }
+}
+
+/* ===== MOBILE SMALL (max 480px) ===== */
+@media (max-width: 480px) {
+  .projecth1 h1 {
+           /* center automatically */
+    margin-top: -100px;
+    font-size: 30px;
+    margin-bottom: 25px;
+  }
+}
+
+        .projecth1 {
+          margin-left: 150px ;
+          margin-bottom:40px ;
+         font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+          
+          color: var(--accent2);
+        }
+        .project-reel-container {
+          position: relative;
+          margin-bottom: 300px;
+          
+            /* Hides content outside the view, crucial for the infinite effect */
+            overflow: hidden; 
+            position: relative;
+            /* Adjusted padding to make room for the 1.5rem top and bottom sprockets */
+            padding: 4.5rem 0; 
+            /* Creates a fade effect on the sides */
+            mask-image: linear-gradient(to right, transparent, black 15%, rgba(0, 0, 0, 0.674) 85%, transparent); 
+            /* Set background to film stock color */
+            background-color: var(--f ilm-stock);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.522), rgb(0, 0, 0));
+            z-index: 0; 
+            /* Ensures the container takes up a reasonable width for the reel effect */
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* --- CAMERA REEL SPOCKET EFFECT (Pure CSS) --- */
+        /* Pseudo-elements for the top and bottom sprocket tracks */
+        .project-reel-container::before,
+        .project-reel-container::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: var(--sprocket-height);
+            z-index: 1; 
+            pointer-events: none;
+            
+            /* Using repeating-linear-gradient to create the dark sprocket holes on the dark film background */
+            background-image: repeating-linear-gradient(
+                90deg, 
+                transparent 0px, 
+                transparent 1rem, /* The space/hole (shows the dark film-stock container background) */
+                var(--sprocket-tooth) 1rem, /* The "tooth" bar (reinforced dark edge) */
+                var(--sprocket-tooth) 2.2rem /* The "tooth" bar end */
+            );
+            /* Define the size of the repeating unit */
+            background-size: 2.2rem 100%; 
+        }
+
+        /* Position the tracks */
+        .project-reel-container::before {
+            top: 0;
+        }
+
+        .project-reel-container::after {
+            bottom: 0;
+        }
+        /* --- END OF SPOCKET EFFECT --- */
+
+
+        /* The scrolling element */
+        .project-reel {
+            display: flex;
+            gap: var(--gap-size);
+            width: max-content; 
+            animation: scroll-left 50s linear infinite; 
+            padding-bottom: 0px; 
+            padding-top: 0px; 
+        }
+
+        .project-reel:hover {
+            animation-play-state: paused; 
+        }
+
+        /* Individual card styling (The white frame around the image) */
+        .project-reel-card {
+            flex-shrink: 0; 
+            width: var(--card-width);
+            height: 220px;
+            border-radius: 16px;
+            background: var(--card-bg); /* Now light gray/white */
+            border: 1px solid rgba(0,0,0,0.1); /* Subtle black border */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8); /* Darker shadow for contrast against the film stock */
+            transition: transform 0.3s ease, border-color 0.3s;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-reel-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: var(--accent2);
+            box-shadow: 0 20px 40px rgba(0, 210, 255, 0.6);
+        }
+
+        .project-reel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1; /* Show image fully */
+            transition: opacity 0.3s, filter 0.3s;
+        }
+
+        .project-title-overlay {
+            position: absolute;
+            bottom: 0;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            font-weight: 600;
+            color: white;
+            width: 100%;
+        }
+
+        /* Keyframes for infinite loop scroll */
+        @keyframes scroll-left {
+            from { transform: translateX(0); }
+            /* Calculates the distance to scroll: (Card Width + Gap Size) * Number of Original Cards (12) */
+            to { transform: translateX(calc((var(--card-width) + var(--gap-size)) * -12)); }
+        }
+
+
+
+
+
+
+
+/* CONTACT */
+.contact-container{
+  position: relative;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding:2rem 1rem;
+  max-width:800px;
+  
+  
+  border-radius:var(--radius);
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 30px rgba(58, 57, 57, 0.792);
+
+}
+.contact-form{
+  position: absolute;
+  top:2000px;
+  left: 50%;
+  
+  gap:1rem;
+  max-width:500px;
+  
+  
+  
+}
+label span{
+  display:block;
+   margin-bottom:6px;
+  color:white;
+  
+  
+  }
+  .btn{
+    margin-top:1rem;
+    color: #ffffff;
+
+  }
+  .btn-ghost{
+    margin-top:1rem;
+    margin-left:1rem;
+    padding: 0.7rem;
+    border:1px solid #00d2ff;
+    color: #ffffff;
+    border-radius: 10px ;
+  }
+  .btn:hover{
+    background:var(--accent2);
+    color:#ffffff;
+  }
+  
+  .btn-ghost:hover{
+    background:var(--accent2);
+    color:#ffffff;
+    border-radius: 10px ;
+     background-color: #8c9698;
+  transform: scale(1.05);
+  cursor: pointer;
+    
+  }
+
+input,textarea{
+  width:500px;
+   padding:.7rem;
+  border-radius:10px;
+  border:1px solid rgb(255, 255, 255);
+  background:#1d1d1eca;
+  color:#fff;
+}
+.form-row{display:flex; gap:1rem}
+.form-msg{margin-top:.5rem; color:var(--accent2);}
+
+/* FOOTER */
+.site-footer{
+  text-align:center;
+  color:var(--muted);
+  padding:2rem 0;
+}
+
+/* RESPONSIVE */
+@media(max-width:760px){
+  .hero-inner{grid-template-columns:1fr;}
+  .links{
+    display:none; flex-direction:column;
+    position:absolute; right:1rem; top:58px;
+    background:var(--glass);
+    padding:1rem;
+    border-radius:10px;
+    backdrop-filter:blur(8px);
+  }
+  .links.open{display:flex}
+  .hamburger{display:block}
+  .about-grid{grid-template-columns:1fr}
+}
+
+
+
+
+
+
+
+
+ /* ---------------------------------------------------- */
+        /* --- 3D BACKGROUND CANVAS STYLING (gad-bg-canvas) --- */
+        /* ---------------------------------------------------- */
+        #gad-bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            z-index: -10; /* Ensures it is behind all content */
+            pointer-events: none; /* Allows clicks to pass through to the elements below */
+        }
+        
+        /* ---------------------------------------------------- */
+        /* --- Assistive Dot and Menu Styles (gad-assist-dot) --- */
+        /* ---------------------------------------------------- */
+        
+        /* Custom styles for the Floating Dot container */
+        #gad-assist-dot {
+            --dot-size: 60px; /* Base size for desktop */
+            position: fixed;
+            top: 20%;
+            left: 10px;
+            width: var(--dot-size);
+            height: var(--dot-size);
+            /* Slightly darker background to contrast with the dark BG, but still transparent */
+            background-color: rgba(255, 255, 255, 0.1); 
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            cursor: grab;
+            transition: left 0.3s ease-out, top 0.3s ease-out, opacity 0.2s ease, background-color 0.1s;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        #gad-assist-dot:active {
+            cursor: grabbing;
+            opacity: 0.9;
+        }
+
+        /* Smaller size for mobile devices */
+        @media (max-width: 640px) {
+            #gad-assist-dot {
+                --dot-size: 50px;
+            }
+        }
+
+        /* Styling for the central icon (Hamburger/Close icon) */
+        #gad-dot-icon {
+            width: 50%;
+            height: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #gad-dot-icon::before, #gad-dot-icon::after, #gad-dot-icon span {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 3px;
+            background-color: #eee; /* Light color for dark BG */
+            left: 15%;
+            transition: transform 0.3s ease-out, top 0.3s ease-out;
+            border-radius: 1px;
+        }
+
+        /* Hamburger lines positioning */
+        #gad-dot-icon::before { top: 30%; }
+        #gad-dot-icon span { top: 50%; transform: translateY(-50%); }
+        #gad-dot-icon::after { top: 65%; }
+
+        /* Menu Open state: Hamburger turns into an X */
+        #gad-assist-dot.gad-menu-open #gad-dot-icon::before {
+            top: 50%; 
+            transform: rotate(45deg);
+        }
+        #gad-assist-dot.gad-menu-open #gad-dot-icon span {
+            opacity: 0; /* Hide middle line */
+        }
+        #gad-assist-dot.gad-menu-open #gad-dot-icon::after {
+            top: 50%;
+            transform: rotate(-45deg);
+        }
+
+
+        /* --- RADIAL MENU STYLING (gad-dot-menu) --- */
+        #gad-dot-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: transparent; 
+            z-index: 999;
+            pointer-events: none; /* Allows clicks to pass through when closed */
+            opacity: 0;
+            transition: opacity 0.2s ease-out;
+        }
+
+        #gad-dot-menu.gad-show {
+            opacity: 1;
+            pointer-events: auto; /* Enable clicks on menu items */
+        }
+
+        .gad-menu-item {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+            width: 80px;
+            height: 80px;
+
+            background-color: rgba(27, 28, 28, 0.819);
+             /* Sky-500 */
+            color: white;
+            text-align: center;
+            border-radius: 9999px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            
+            /* Initial state: Center the item (overridden by JS) */
+            top: 50vh; 
+            left: 50vw;
+
+            /* Start scaled down and invisible, transition on transform */
+            transform: translate(-50%, -50%) scale(0); 
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.15s;
+        }
+
+        .gad-menu-item.gad-active {
+            transform: translate(-50%, -50%) scale(1); /* Target state: scale up */
+        }
+
+        .gad-menu-item:hover {
+            background-color: rgba(14, 165, 233, 1);
+        }
+
+        .gad-menu-item-icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+        
+        /* Ensure SVG icons inherit color */
+        .gad-menu-item-icon svg {
+            width: 60%;
+            height: 60%;
+            fill: currentColor;
+        }
+        
+        /* Dark Mode Styling (Optional - for simple implementation) */
+        .gad-light-mode .projecth1{
+            color: #fcfcfc !important;
+
+        }
+        
+        .gad-light-mode.project-reel-card {
+            background: #ddd9d9 !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1) !important;
+        }
+        .gad-light-mode {
+            background-color: #137479 !important;
+            color: #e0e0e0 !important;
+        }
+        .gad-light-mode .gad-content-card {
+            background: #2a2a2a !important;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1) !important;
+        }
+        .gad-light-mode .text-gray-800, .gad-light-mode .text-gray-700 {
+            color: #f7f7f7 !important;
+        }
+        .gad-light-mode .text-gray-600 {
+            color: #b0b0b0 !important;
+        }
+        .gad-light-mode #gad-assist-dot {
+            background-color: rgba(42, 42, 42, 0.9) !important;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.7) !important;
+        }
+        .gad-light-mode #gad-dot-icon::before, .gad-light-mode #gad-dot-icon::after, .gad-light-mode #gad-dot-icon span {
+            background-color: #fff !important;
+        }
+        
+        /* Basic content styling (unique classes added for content) */
+        .gad-content-card-container {
+            padding: 20px;
+        }
+        .gad-content-card {
+            background: #111827; /* Dark background for content cards */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin: 20px auto;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* --- END OF CSS SECTION --- */
+
+      .section-title-container{
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  margin-left: 150px ;
+
+
+      }
+
+
+
+
+
+
+
+        /* Custom styles for the fixed sidebar position */
+        #social-sidebar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(10, 10, 10, 0.221);
+            backdrop-filter: blur(10px);
+
+            
+        
+            z-index: 1000;
+            /* Added deep shadow for contrast */
+            
+            /* Removed blur/padding from CSS, handled by Tailwind classes on NAV */
+        }
+
+        /* Styling for the list items/buttons (Pill Style) */
+        .social-link {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s;
+            display: flex;
+            align-items: center;
+            
+            justify-content: center;
+            /* Fixed dimensions for a perfect circle/pill */
+            width: 3.5rem; 
+            height: 3.5rem;
+            margin: 0.5rem; /* Spacing between pills and container edge */
+            border-radius: 9999px; /* Pill shape */
+            background-color: rgba(9, 9, 9, 0.293); /* Default white background */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle initial shadow */
+        }
+
+        .social-link:hover {
+            /* Scales up slightly on hover */
+            transform: scale(1.1);
+            /* Deeper shadow on hover */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Custom hover colors for brands, using text color for primary color */
+        /* WhatsApp */
+        .whatsapp-hover:hover { background-color: #25D366; color: white; }
+        /* LinkedIn */
+        .linkedin-hover:hover { background-color: #0077B5; color: white; }
+        /* Email */
+        .email-hover:hover { background-color: #DC2626; color: white; }
+        
+        /* Instagram gradient hover */
+        .instagram-hover:hover {
+            color: white;
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+
+
+
+
+
+
+
+
+
+ /* Overlay container for profile content */
+        .content-overlay {
+            position: fixed; /* Use fixed positioning for the central overlay */
+            top: 400px;
+            left: 70%;
+            /* Initial centering - JS will dynamically update the transform */
+            transform: translate(-50%, -50%); 
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            z-index: 10;
+            color: white;
+            text-shadow: 0 0 5px #00FFFF;
+            transition: opacity 0.3s ease; /* Smooth transition for the opacity effect */
+            pointer-events: none; /* Allows interaction with scrollable content below */
+        }
+
+        /* --- 3D Circuit Tracer Setup --- */
+        .tracer-container {
+            position: absolute;
+            width: 500px; /* Size of the entire 3D space */
+            height: 500px;
+            /* Center the container within the overlay */
+            top: 50%;
+            left: 50%;
+            margin-left: -250px;
+            margin-top: -250px;
+            transform-style: preserve-3d; 
+            animation: globalRotate 40s linear infinite; /* Slow global rotation */
+        }
+        
+        /* Keyframes for rotation */
+        @keyframes globalRotate {
+            to { transform: rotateY(360deg); }
+        }
+
+        @keyframes tracerFlow {
+            0% { 
+                opacity: 0.1;
+                transform: rotateZ(0deg) translateZ(-200px) scale(0.5); 
+            }
+            50% { 
+                opacity: 0.9;
+                transform: rotateZ(180deg) translateZ(0px) scale(1.0); 
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            }
+            100% { 
+                opacity: 0.1;
+                transform: rotateZ(360deg) translateZ(200px) scale(0.5); 
+            }
+        }
+
+        /* Create 10 layers of tracers, offset by rotation and animation delay */
+        .tracer-layer {
+            position: absolute;
+            top: 48%;
+            left: 50%;
+            width: 40%;
+            height: 40%;
+            margin-left: -20%;
+            margin-top: -20%;
+            
+            /* The Tracer Element (A simple rectangular outline) */
+            border: 2px solid transparent; 
+            border-top-color: #00FFFF;
+            border-bottom-color: #00FFFF;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            
+            animation: tracerFlow 12s linear infinite;
+        }
+
+        /* Profile Picture Styling - Focal point */
+        .profile-container {
+            position: relative;
+            z-index: 15; 
+            width: 140px; 
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #00FFFF; 
+            transition: all 0.5s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            background-color: #111;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+        }
+        
+        .profile-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 45px #00FFFF, inset 0 0 20px #00FFFF;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .profile-text {
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+
+
+
+
+
+
+
+
+.kinetic-reveal {
+    /* Completely transparent */
+    opacity: 0;
+    /* Starts 4rem (64px) below its final position */
+    transform: translateY(4rem); 
+    /* Defines the smooth animation over 1.2 seconds */
+    transition: opacity 1200ms ease-in-out, transform 1200ms ease-in-out;
+    /* Browser optimization for better performance */
+    will-change: opacity, transform; 
+}
+
+/* Visible state: Triggered by JavaScript when the element enters the viewport */
+.kinetic-reveal.state-manifest {
+    /* Fully opaque */
+    opacity: 1;
+    /* Slides back to its original position */
+    transform: translateY(0);
+}
+
+
+        
+
+
+
+
+
+
+
+
+
+ /* CTA */
+   
+    
+
+    
+
+    /* Skills list */
+    .skill-pill {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgb(255, 255, 255);
+      padding:.35rem .6rem;
+      border-radius:999px;
+      font-weight:600;
+      color:#fdfdfd;
+      display:inline-flex;
+      gap:.45rem;
+      align-items:center;
+      margin:.25rem;
+    }
+
+    /* PROJECT CARD */
+    .project-card {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.522), rgb(0, 0, 0));
+      border:1px solid rgba(255,255,255,0.03);
+      border-radius:12px;
+      padding:1rem;
+      box-shadow:0 8px 30px rgba(0,0,0,0.6);
+    }
+
+  
+   
+    
+    /* Footer glass */
+    footer.glass {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.522), rgb(0, 0, 0));
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(0, 0, 0, 0.473);
+    }
+
+    /* Small utilities */
+    .muted { color: var(--muted); font-weight:500; }
+    .section { padding:4rem 1rem; }
+    .section h2 { color:var(--neon); font-family:'Space Grotesk',sans-serif; margin-bottom:1rem; }
+
+    /* responsive tweaks */
+    @media (max-width: 900px){
+      .profile-card { padding: 1rem; }
+      .container { gap:1rem; padding: 0 1rem; }
+
+      
+    }
+
+
+
+@media (max-width: 768px) {
+  #social-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  #orbit-wrapper,
+  #orbit-container {
+    display: none !important;
+  }
+
+  /* Adjust skill card center if needed */
+  .skillcard {
+    position: relative;
+    left:20px;
+    top: 0;
+    transform: none;
+    margin: 20px auto;
+  }
+}
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="nav">
+  <div class="container nav-inner">
+    
+    <a class="brand" href="#"><i class="fas fa-user-circle text-white text-xl"> </i> Thenujaya<span>Perera</span></a>
+
+    <nav class="links" id="navLinks">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button id="hamburger" class="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+  
+<div class ="profile" id="img3" >
+  <img src="w (3).jpg">
+</div>
+
+<div class ="profile3" id="img4" >
+  <img src="w (3).jpg">
+</div>
+
+
+
+
+
+
+
+<!-- HERO -->
+<div class="kinetic-reveal">
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <h1>Hi, I’m <strong>Thenujaya Perera  </strong></h1>
+      <div style="color: #ffffff;"><p>Bachelor’s in Computer Science(Undergraduate)</p>
+      <p>Freelancer | Web & IoT Developer</p></div>
+      
+      
+      <p class="subtitle">I build <span id="typed"></span></p>
+      <div class="cta-row">
+        
+        <a class="btn" href="#projects">View Projects</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+</div>
+
+
+
+
+<div class ="kinetic-reveal">
+<section class= "about" id="about" style="padding:40px;">
+  <div class="abouttitle"><h1>About Me</h1></div>
+  <p id="aboutText"></p>
+</section>
+</div>
+
+
+
+
+
+
+ <canvas id="gad-bg-canvas"></canvas>
+
+    <!-- Placeholder Content (to show scrolling capability) -->
+    
+    
+    <!-- 1. THE FLOATING DOT ELEMENT (UNIQUE ID: gad-assist-dot) -->
+    <div id="gad-assist-dot" role="button" aria-label="Open Assistive Menu">
+        <div id="gad-dot-icon"><span></span></div>
+    </div>
+
+    <!-- 2. THE MENU OVERLAY CONTAINER (UNIQUE ID: gad-dot-menu) -->
+    <div id="gad-dot-menu">
+        <div class="gad-menu-item" data-action="GitHub">
+            <div class="gad-menu-item-icon">
+                <!-- GitHub Octocat SVG icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2-.01.21.15.46.55.38C13.71 14.53 16 11.54 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+            </div>
+            <span class="text-xs">GitHub</span>
+        </div>
+        <div class="gad-menu-item" data-action="Contact">
+            <div class="gad-menu-item-icon"><i class="fas fa-envelope text-2xl"></i></div>
+            <span class="text-xs">Contact</span>
+        </div>
+        <div class="gad-menu-item" data-action="Top">
+            <div class="gad-menu-item-icon"> <i class="fas fa-arrow-up text-2xl"></i>⬆</div>
+            <span class="text-xs">To Top</span>
+        </div>
+        <div class="gad-menu-item" data-action="Share">
+            <div class="gad-menu-item-icon"><i class="fas fa-share-alt text-2xl"></i></div>
+            <span class="text-xs">Share</span>
+        </div>
+        <div class="gad-menu-item" data-action="DarkMode">
+            <div class="gad-menu-item-icon"> <i class="fas fa-sun text-2xl"></i></div>
+            <span class="text-xs">Light Mode</span>
+        </div>
+        <div class="gad-menu-item" data-action="Support">
+            <div class="gad-menu-item-icon"><i class="fas fa-question-circle text-2xl"></i></div>
+            <span class="text-xs">Support</span>
+        </div>
+    </div>
+    
+    <!-- Modal for demonstrating "working" actions (Unique ID: gad-action-modal) -->
+    <div id="gad-action-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden items-center justify-center z-[1002]">
+        <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full">
+            <h3 class="text-xl font-bold mb-4 text-gray-800" id="gad-modal-title">Action Title</h3>
+            <p id="gad-modal-content" class="text-gray-600 mb-6"></p>
+            <button onclick="document.getElementById('gad-action-modal').classList.add('hidden'); document.getElementById('gad-action-modal').classList.remove('flex');" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition">
+                Close
+            </button>
+        </div>
+    </div>
+
+
+
+
+
+
+<nav id="social-sidebar" 
+         class="flex flex-col space-y-2 p-2 rounded-full 
+                bg-white/10 backdrop-blur-md"> 
+        
+        <!-- WhatsApp -->
+        <a  onclick="whatsapp()" target="_blank" rel="noopener noreferrer" 
+           class="social-link text-[#25D366] whatsapp-hover" 
+           aria-label="WhatsApp Profile">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+        
+        <!-- Instagram -->
+        <a href="https://instagram.com/YOUR_INSTAGRAM_HANDLE" target="_blank" rel="noopener noreferrer" 
+           class="social-link text-fuchsia-600 instagram-hover" 
+           aria-label="Instagram Profile">
+            <i class="fab fa-instagram text-2xl"></i>
+        </a>
+        
+        <!-- LinkedIn -->
+        <a href="https://lk.linkedin.com/in/thenujaya-perera-8699282b9" target="_blank" rel="noopener noreferrer" 
+           class="social-link text-[#0077B5] linkedin-hover" 
+           aria-label="LinkedIn Profile">
+            <i class="fab fa-linkedin-in text-2xl"></i>
+        </a>
+        
+        <!-- Email -->
+        <a  onclick="email()" target="_blank" rel="noopener noreferrer"
+           class="social-link text-red-600 email-hover" 
+           aria-label="Send Email">
+            <i class="fas fa-envelope text-2xl"></i>
+        </a>
+        
+    </nav>
+
+
+
+
+
+
+
+
+
+<div id="scrollImg" class="content-overlay"> 
+        
+        <!-- 3D Tracer Background Container -->
+        <div class="tracer-container">
+            <!-- Generate 10 layers with different delays for continuous flow -->
+            <div class="tracer-layer" style="animation-delay: 0s; transform: rotate(0deg);"></div>
+            <div class="tracer-layer" style="animation-delay: -1.2s; transform: rotate(18deg);"></div>
+            <div class="tracer-layer" style="animation-delay: -2.4s; transform: rotate(36deg);"></div>
+            <div class="tracer-layer" style="animation-delay: -3.6s; transform: rotate(54deg);"></div>
+            <div class="tracer-layer" style="animation-delay: -4.8s; transform: rotate(72deg);"></div>
+            <div class="tracer-layer" style="animation-delay: -6.0s; transform: rotate(90deg);"></div>
+            <div class="tracer-layer" style="animation-delay: -7.2s; transform: rotate(108deg);"></div>
+            <div class="tracer-layer" style="animation-delay: -8.4s; transform: rotate(126deg);"></div>
+            <div class="tracer-layer" style="animation-delay: -9.6s; transform: rotate(144deg);"></div>
+            <div class="tracer-layer" style="animation-delay: -10.8s; transform: rotate(162deg);"></div>
+        </div>
+
+        <div class="profile-container mb-8">
+            <img 
+                src="profbg.jpg" 
+                class="profile-pic" 
+                alt="Profile Picture Placeholder"
+                onerror="this.onerror=null;this.src='https://placehold.co/220x220/00FFFF/000000?text=P+P'"
+            >
+        </div>
+        
+    
+        
+    </div>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 3D ORBIT PROJECTS -->
+ <div class="kinetic-reveal">
+<section id="orbit-projects">
+  <h2 class="section-title-container">Skills</h2>
+  <div class="kinetic-reveal">
+  <div class="skillcard"> 
+    <h2 style="font-weight: 700; font-size: 20px; text-align: center;" >My Expertise</h2><br>
+    <p>I create modern, interactive, and high-
+      performance digital solutions by combining
+      web development, UI/UX design, and IoT 
+      engineering. My skills include building
+      responsive interfaces, integrating real-time
+      systems, working with APIs, managing databases,
+      and developing smart embedded applications. I
+      use industry-standard tools and technologies
+      to deliver clean, optimized, and scalable
+      results across both software and hardware 
+      projects.</p>
+  </div>
+  </div>
+  <div id="orbit-wrapper">
+    <div id="orbit-container"></div>
+  </div>
+  
+</section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="kinetic-reveal">
+<!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="kinetic-reveal">
+<div class="projecth1"><h1>Where Imagination Meets Code</h1></div>
+</div>
+    <div class="max-w-6xl mx-auto">
+      <h2>Selected Projects</h2>
+
+      <div class="grid md:grid-cols-2 gap-6 mt-6">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="flex justify-between">
+            <h3 class="font-bold text-lg">Smart Glove — Elderly Care</h3>
+            <div class="text-sm muted">2025 • Team</div>
+          </div>
+          <p class="muted mt-2">A wearable glove that monitors pulse, temperature, and SPO₂; provides automated medicine reminders and emergency alerts via ESP32 + mobile integration.</p>
+
+          <div class="mt-3">
+            <strong>Technologies:</strong> ESP32, MAX30100, DS18B20, Blynk, Firebase, C/C++
+          </div>
+          <div class="mt-2">
+            <strong>Role:</strong> Lead developer — firmware, backend, UI
+          </div>
+          <div class="mt-2">
+            <strong>Challenge:</strong> Reliable sensor fusion and low-power scheduling on battery constraints.
+          </div>
+
+          <div class="mt-4 flex gap-3">
+            <a class="btn" href="https://github.com/ThenujayaPerera/Smart-Glove-Elderly-Care-Monitoring-System-IOT-ESP32" target="_blank"><i class="fab fa-github"></i> Source</a>
+            
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="flex justify-between">
+            <h3 class="font-bold text-lg">Automated Medicine Dispenser</h3>
+            <div class="text-sm muted">2024 • Solo</div>
+          </div>
+          <p class="muted mt-2">Automated pill scheduling and dispensing unit with stepper motor and vibration alert, integrated with web UI for scheduling and notifications.</p>
+          <div class="mt-3"><strong>Technologies:</strong> ESP32, Stepper, Node.js, Socket.io, MySQL</div>
+          <div class="mt-2"><strong>Role:</strong> Full-stack + Firmware</div>
+          <div class="mt-4 flex gap-3">
+            <a class="btn" href="https://github.com/ThenujayaPerera/Automated-Medicine-Dispenser-Unit" target="_blank"><i class="fab fa-github"></i> Source</a>
+            
+          </div>
+        </div>
+
+       
+        
+      
+    
+
+
+        <!-- NEW Project: Smart Dustbin -->
+        <div class="project-card">
+          <div class="flex justify-between">
+            <h3 class="font-bold text-lg">Smart Dustbin — IoT Waste Manager</h3>
+            <div class="text-sm muted">2025 • Solo</div>
+          </div>
+          <p class="muted mt-2">An IoT-enabled dustbin that measures fill level, detects overflow, and reports location & status to a cloud dashboard. Includes automatic lid control and low-power operation for long-term deployment.</p>
+          <div class="mt-3"><strong>Technologies:</strong> ESP32, Ultrasonic sensor, MQTT, Firebase, C++</div>
+          <div class="mt-2"><strong>Role:</strong> Hardware & Firmware developer</div>
+          <div class="mt-2"><strong>Challenge:</strong> Low-power sleep/wake cycles and reliable wireless data delivery in noisy environments.</div>
+          <div class="mt-4 flex gap-3 project-links">
+            <a class="btn" href="https://github.com/ThenujayaPerera/EcoSort-Smart-Waste-Segregation-Bin" target="_blank"><i class="fab fa-github"></i> Source</a>
+            
+          </div>
+        </div>
+
+        <!-- NEW Project: Smart Train Auto-Stop -->
+        <div class="project-card">
+          <div class="flex justify-between">
+            <h3 class="font-bold text-lg">Smart Train — Automated Stop & Obstacle Detection</h3>
+            <div class="text-sm muted">2024 • Team</div>
+          </div>
+          <p class="muted mt-2">An automation prototype for small-scale trains: automatic station stopping based on location, plus LIDAR/IR obstacle detection to trigger emergency stops when objects are on tracks.</p>
+          <div class="mt-3"><strong>Technologies:</strong> Raspberry Pi, LIDAR/IR sensors, GPS module, Python, C++ for microcontroller</div>
+          <div class="mt-2"><strong>Role:</strong> Systems integration & embedded control</div>
+          <div class="mt-2"><strong>Challenge:</strong> Low-latency obstacle detection and safe braking simulation with mechanical constraints.</div>
+          <div class="mt-4 flex gap-3 project-links">
+            <a class="btn" href="https://github.com/ThenujayaPerera/Autonomous-Object-Avoiding-Smart-Train" target="_blank"><i class="fab fa-github"></i> Repo</a>
+            
+          </div>
+        </div>
+
+
+
+
+        <!-- NEW Project: Food Hub (Fullstack: HTML/CSS/JS + C++ backend) -->
+        <div class="project-card">
+          <div class="flex justify-between">
+            <h3 class="font-bold text-lg">Food Hub — Web + Backend</h3>
+            <div class="text-sm muted">2024 • Client</div>
+          </div>
+          <p class="muted mt-2">A restaurant aggregator website with ordering, menu management, and admin panel. Frontend uses HTML/CSS/JS; backend includes a C++ service for order processing (fast, native queue handling) and a Node.js REST API.</p>
+          <div class="mt-3"><strong>Technologies:</strong> HTML/CSS/JS, C++ (backend order engine), Node.js, MySQL</div>
+          <div class="mt-2"><strong>Role:</strong> Full-stack developer — frontend, backend integration</div>
+          <div class="mt-2"><strong>Challenge:</strong> Integrating a native C++ processing module with a web-based API and ensuring secure order queues.</div>
+          <div class="mt-4 flex gap-3 project-links">
+            
+          </div>
+        </div>
+
+        <!-- NEW Project: Crimson Bakery (PHP Backend) -->
+        <div class="project-card">
+          <div class="flex justify-between">
+            <h3 class="font-bold text-lg">Crimson Bakery — Website with PHP Backend</h3>
+            <div class="text-sm muted">2023 • Client</div>
+          </div>
+          <p class="muted mt-2">A bakery e-commerce site with product management, orders, and admin dashboard. Built with PHP backend (server-side templates), MySQL database, and modern front-end UX.</p>
+          <div class="mt-3"><strong>Technologies:</strong> PHP, MySQL, HTML, CSS, JavaScript</div>
+          <div class="mt-2"><strong>Role:</strong> Backend & Frontend development</div>
+          <div class="mt-2"><strong>Challenge:</strong> Secure order flow and image uploads with validation.</div>
+          <div class="mt-4 flex gap-3 project-links">
+            <a class="btn" href="https://github.com/ThenujayaPerera/Website-for-Crimson-Bakery-using-HTML-CSS-JS-and-PHP-backend" target="_blank"><i class="fab fa-github"></i> Source</a>
+            
+          </div>
+        </div>
+
+
+
+
+        <!-- NEW Project: Synthex6 (Frontend only) -->
+        <div class="project-card">
+          <div class="flex justify-between">
+            <h3 class="font-bold text-lg">Synthex6 — Frontend Website</h3>
+            <div class="text-sm muted">2023 • Personal</div>
+          </div>
+          <p class="muted mt-2">A modern, responsive marketing site built as a frontend-only project showcasing animations, product pages, and contact forms.</p>
+          <div class="mt-3"><strong>Technologies:</strong> HTML, CSS, JavaScript, GSAP for animations</div>
+          <div class="mt-2"><strong>Role:</strong> Frontend developer & designer</div>
+          <div class="mt-4 flex gap-3 project-links">
+            <a class="btn" href="https://github.com/ThenujayaPerera/synthex_6" target="_blank"><i class="fab fa-github"></i> Repo</a>
+            <a class="btn ghost" href="https://synthex6-six.vercel.app/">Live</a>
+          </div>
+        </div>
+
+        <!-- NEW Project: Cisco Packet Tracer — Networking Projects (2 items combined) -->
+        <div class="project-card">
+          <div class="flex justify-between">
+            <h3 class="font-bold text-lg">Network Deployments — Cisco Packet Tracer</h3>
+            <div class="text-sm muted">2022–2024 • Client</div>
+          </div>
+          <p class="muted mt-2">Two real-world networking projects using Cisco Packet Tracer: (1) Small office network design with VLANs, OSPF routing and QoS; (2) Campus network with inter-VLAN routing, ACLs, and simulated WAN links.</p>
+          <div class="mt-3"><strong>Technologies:</strong> Cisco Packet Tracer, VLANs, OSPF, ACLs, NAT</div>
+          <div class="mt-2"><strong>Role:</strong> Network designer & implementer</div>
+          <div class="mt-2"><strong>Challenge:</strong> Ensuring redundancy and QoS for VoIP while keeping costs low.</div>
+          <div class="mt-4 flex gap-3 project-links">
+            
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="kinetic-reveal"><h1 class="section-title-container">Project Reel</h1></div>
+
+<div class="kinetic-reveal">
+<div class="project-reel-container">
+  
+    <div id="projectReel" class="project-reel">
+        <!-- 12 ORIGINAL Project Cards -->
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (1).jpg" alt="Project 1">
+          <span class="project-title-overlay">Project Alpha</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <video class="project-reel-image" src="p1 (1).mp4" alt="Project 2" autoplay muted loop></video>
+          <span class="project-title-overlay">Project Beta</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (1).png" alt="Project 3">
+          <span class="project-title-overlay">Project Gamma</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (2).jpg" alt="Project 4">
+          <span class="project-title-overlay">Project Delta</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <video class="project-reel-image" src="p1 (2).mp4" alt="Project 5" autoplay muted loop></video>
+          <span class="project-title-overlay">Project Epsilon</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (2).png" alt="Project 6">
+          <span class="project-title-overlay">Project Zeta</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (3).jpg" alt="Project 7">
+          <span class="project-title-overlay">Project Eta</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (3).png" alt="Project 8">
+          <span class="project-title-overlay">Project Theta</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (4).jpg" alt="Project 9">
+          <span class="project-title-overlay">Project Iota</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (4).png" alt="Project 10">
+          <span class="project-title-overlay">Project Kappa</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (5).png" alt="Project 11">
+          <span class="project-title-overlay">Project Lambda</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (5).jpg" alt="Project 12">
+          <span class="project-title-overlay">Project Mu</span>
+        </a>
+
+        <!-- 12 DUPLICATE Project Cards (Required for seamless loop) -->
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (1).jpg" alt="Project 1">
+          <span class="project-title-overlay">Project Alpha</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <video class="project-reel-image" src="p1 (1).mp4" alt="Project 2" autoplay muted loop></video>
+          <span class="project-title-overlay">Project Beta</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (2).png" alt="Project 3">
+          <span class="project-title-overlay">Project Gamma</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (2).jpg" alt="Project 4">
+          <span class="project-title-overlay">Project Delta</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (3).jpg" alt="Project 5">
+          <span class="project-title-overlay">Project Epsilon</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (3).png" alt="Project 6">
+          <span class="project-title-overlay">Project Zeta</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (4).jpg" alt="Project 7">
+          <span class="project-title-overlay">Project Eta</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (4).png" alt="Project 8">
+          <span class="project-title-overlay">Project Theta</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (4).jpg" alt="Project 9">
+          <span class="project-title-overlay">Project Iota</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (4).png" alt="Project 10">
+          <span class="project-title-overlay">Project Kappa</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (5).png" alt="Project 11">
+          <span class="project-title-overlay">Project Lambda</span>
+        </a>
+        <a class="project-reel-card" href="#">
+          <img class="project-reel-image" src="p1 (5).jpg" alt="Project 12">
+          <span class="project-title-overlay">Project Mu</span>
+        </a>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="kinetic-reveal">
+
+
+  <!-- EDUCATION & EXPERIENCE -->
+  <section class="section bg-slate-900/30" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.522), rgb(0, 0, 0));">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+      <div>
+        <h2>Education</h2>
+        <div class="mt-4">
+          <h3 class="font-bold">BSc. Computer Science — (Undergraduate)</h3>
+          <div class="muted">General Sir John Kotelawala Defence University — 2024 — Present</div>
+          <p class="mt-2 muted">Relevant coursework: Embedded Systems, Data Structures, Networks, Databases, Web Development</p>
+        </div>
+        <div class="mt-4">
+          <h3 class="font-bold">Certifications</h3>
+          <ul class="muted list-disc list-inside mt-2">
+            <li>IoT Development — Online Course</li>
+            <li>Introduction to Networking — Online Course</li>
+            <li>Introduction to C++ — Online Course</li>
+            <li>AI and Machine Learning — Online Course(following)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h2>Experience</h2>
+        <div class="mt-3">
+          <h3 class="font-bold">Freelance Developer</h3>
+          <div class="muted">2023 — Present</div>
+          <p class="muted mt-2">Delivered multiple IoT integrations, dashboards, and  websites for clients — full stack delivery from firmware through frontend.</p>
+        </div>
+
+        <div class="mt-4">
+          <h3 class="font-bold">Student Researcher</h3>
+          <div class="muted">2024 — 2025</div>
+          <p class="muted mt-2">Research on smart glove systems for elderly care, including literature review, prototype design, and experiment logging.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="kinetic-reveal">
+
+ <!-- CONTACT -->
+  <section id="contact" class="section bg-slate-900/20" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.522), rgb(0, 0, 0));">
+    <div class="max-w-4xl mx-auto">
+      <h2>Contact</h2>
+      <p class="muted mt-2">Want to work together or ask about a project? Send a message or reach me on WhatsApp / email below.</p>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <!-- Contact form (non-production demo) -->
+        <form id="contact-form" class="space-y-4">
+          <div>
+            <label class="block text-sm text-white/80">Name</label>
+            <input class="w-full p-3 rounded-md bg-transparent border border-white/6 text-white" placeholder="Your name" required />
+          </div>
+          <div>
+            <label class="block text-sm text-white/80">Email</label>
+            <input type="email" class="w-full p-3 rounded-md bg-transparent border border-white/6 text-white" placeholder="you@example.com" required />
+          </div>
+          <div>
+            <label class="block text-sm text-white/80">Message</label>
+            <textarea class="w-full p-3 rounded-md bg-transparent border border-white/6 text-white" rows="5" placeholder="Tell me about your project"></textarea>
+          </div>
+          <div>
+            <button type="submit" class="btn">Send Message</button>
+          </div>
+        </form>
+
+        <!-- Contact details -->
+        <div class="space-y-3">
+          <div>
+            <h4 class="font-semibold">Email</h4>
+            <a href="mailto:se1nu2ka3@gmail.com" class="muted">se1nu2ka3@gmail.com</a>
+          </div>
+          <div>
+            <h4 class="font-semibold">WhatsApp</h4>
+            <a href="https://wa.me/94771234567" target="_blank" class="muted">+94 77 123 4567</a>
+          </div>
+          <div>
+            <h4 class="font-semibold">Kaduwela</h4>
+            <div class="muted">Sri Lanka</div>
+          </div>
+
+          <div class="mt-4">
+            <h4 class="font-semibold">Follow</h4>
+            <div class="flex gap-3 mt-2">
+              <a href="https://github.com/ThenujayaPerera" target="_blank" class="text-white hover:text-cyan-300"><i class="fab fa-github text-2xl"></i></a>
+              <a href="https://lk.linkedin.com/in/thenujaya-perera-8699282b9" target="_blank" class="text-white hover:text-cyan-300"><i class="fab fa-linkedin text-2xl"></i></a>
+              <a onclick="whatsapp()" target="_blank" class="text-white hover:text-green-300"><i class="fab fa-whatsapp text-2xl"></i></a>
+              <a href="mailto:se1nu2ka3@gmail.com" class="text-white hover:text-rose-300"><i class="fas fa-envelope text-2xl"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- FOOTER -->
+<footer class="w-full bg-black/50 backdrop-blur-md text-white border-t border-white/10 mt-12 shadow-lg" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.522), rgb(0, 0, 0));">
+  <div class="max-w-7xl mx-auto py-12 px-6" >
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8" >
+
+      <!-- Section 1 -->
+      <div class="col-span-2 md:col-span-1">
+        <h3 class="text-xl font-bold text-indigo-400 mb-4">Thenujaya Perera</h3>
+        <p class="text-sm text-white/90">
+          Crafting innovative solutions and bringing digital projects to life. Available for contract work and collaboration.
+        </p>
+      </div>
+
+      <!-- Section 2 -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#" class="hover:text-indigo-400">Home</a></li>
+          <li><a href="#about" class="hover:text-indigo-400">About</a></li>
+          <li><a href="#projects" class="hover:text-indigo-400">Projects</a></li>
+          <li><a href="#contact" class="hover:text-indigo-400">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Section 3 -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Contact</h3>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href="mailto:se1nu2ka3@gmail.com" class="hover:text-indigo-400">
+              Email: se1nu2ka3@gmail.com
+            </a>
+          </li>
+          <li>Location: Sri Lanka</li>
+        </ul>
+      </div>
+
+      <!-- Section 4 -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Follow Me</h3>
+        <div class="flex space-x-4">
+          <a href="https://www.linkedin.com/in/thenujaya-perera-8699282b9" target="_blank" class="hover:text-indigo-400 text-3xl">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/ThenujayaPerera" target="_blank" class="hover:text-indigo-400 text-3xl">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="mailto:se1nu2ka3@gmail.com" target="_blank" class="hover:text-indigo-400 text-3xl">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="mt-12 pt-8 border-t border-white/10 text-center">
+      <p class="text-sm text-white/80">
+        &copy; <span id="portfolioYearDisplay"></span> Thenujaya Perera. All rights reserved.
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ----------------- JAVASCRIPT ------------------ -->
+<script>
+
+  
+// YEAR
+ document.getElementById('portfolioYearDisplay').textContent = new Date().getFullYear();
+
+// MOBILE MENU
+const menu = document.getElementById("navLinks");
+document.getElementById("hamburger").onclick = () => menu.classList.toggle("open");
+
+// TYPED EFFECT
+const typed = ["beautiful interfaces", "IoT systems", "embedded solutions"];
+let tIndex = 0, cIndex = 0;
+function typeWriterHero() {
+  let text = typed[tIndex];
+  document.getElementById("typed").textContent = text.slice(0, cIndex++);
+  if (cIndex <= text.length) setTimeout(typeWriterHero, 80);
+  else setTimeout(()=>{ cIndex=0; tIndex=(tIndex+1)%typed.length; typeWriterHero(); }, 1200);
+}
+typeWriterHero();
+
+
+// ------------------ ORBIT SCRIPT ------------------
+const container = document.getElementById("orbit-container");
+
+const projects = [
+  { name: "HTML5", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg" },
+  { name: "CSS3", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg" },
+  { name: "JavaScript", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" },
+  { name: "C++", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-plain.svg" },
+  { name: "Python", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  { name: "AWS", url: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" },
+  { name: "Java", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-plain.svg" },
+  { name: "PHP", url: "https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg" },
+  { name: "Spring Boot", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+  { name: "SQL", url: "https://upload.wikimedia.org/wikipedia/en/d/dd/MySQL_logo.svg" },
+  { name: "React", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { name: "C", url: "https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png" }
+];
+
+
+
+
+
+const total = projects.length;
+let angleOffset = 0;
+
+// create cards
+projects.forEach(icon=>{
+  const card=document.createElement("div");
+  card.className="orbit-card";
+  const img=document.createElement("img");
+  img.src=icon.url;
+  img.alt=icon.name;
+  card.appendChild(img);
+  container.appendChild(card);
+});
+
+function getRadius(){ const rect=document.getElementById('orbit-wrapper').getBoundingClientRect(); return rect.width/2-80; }
+
+function renderProjects(){
+  const radius=getRadius();
+  const centerX=radius+80;
+  const centerY=radius+80;
+  const cards=document.querySelectorAll(".orbit-card");
+  const angleStep=(2*Math.PI)/total;
+  cards.forEach((card,index)=>{
+    const angle=index*angleStep+angleOffset;
+    const x=centerX+radius*Math.cos(angle);
+    const y=centerY+radius*Math.sin(angle);
+    card.style.transform=`translate(-50%, -50%) translate(${x}px, ${y}px)`;
+    const zFactor=(Math.sin(angle)+1)/2;
+    card.style.boxShadow=`0 0 ${15+zFactor*20}px rgba(0,255,255,${0.4+zFactor*0.3})`;
+  });
+}
+
+renderProjects();
+let rotationSpeed=0.002;
+function animate() {
+    try {
+        angleOffset += rotationSpeed;
+        renderProjects();
+        requestAnimationFrame(animate);
+    } catch(err) {
+        console.error("Orbit animate error:", err);
+    }
+}
+animate();
+
+document.getElementById('orbit-wrapper').addEventListener('mousemove', e=>{
+  const rect=e.currentTarget.getBoundingClientRect();
+  const mouseX=e.clientX-rect.left;
+  const offset=(mouseX-rect.width/2)/rect.width;
+  rotationSpeed=0.005*offset;
+});
+window.addEventListener('resize', renderProjects);
+
+
+window.addEventListener("scroll", function () {
+  let scrollY = window.scrollY;         
+  document.getElementById("img3").style.transform =
+    `rotate(${-scrollY*0.2}deg)`;  // rotate image by scroll amount
+});
+window.addEventListener("scroll", function () {
+  let scrollY = window.scrollY;         
+  document.getElementById("img4").style.transform =
+    `rotate(${scrollY*0.2}deg)`;  // rotate image by scroll amount
+});
+
+
+
+
+
+</script>
+<script>
+  
+ const text = `
+Hi, I'm Thenujaya Perera — a passionate Computer Science undergraduate and an IoT & AI enthusiast from Sri Lanka. I love creating innovative solutions that combine hardware and software, especially in healthcare and automation.
+I’ve built projects like smart-gloves, medicine dispensers, ESP32-based IoT systems, wearable devices, and AI-powered tools. My goal is to build intelligent systems that make everyday life easier, safer, and more efficient.
+I enjoy working with:
+• IoT (ESP32, MAX30100, DS18B20, Blynk, ESP-NOW)
+• Mobile Apps (Flutter)
+• Web Development
+• AI & Chatbots
+• Electronics + Embedded Systems
+Outside of coding, I enjoy designing, experimenting with new tech, and learning new things every day.
+`;
+
+        let index = 0;
+        let container1 = document.getElementById("aboutText");
+        let cursor = document.createElement('span');
+        cursor.classList.add('cursor');
+        
+        // Append the blinking cursor immediately
+        container1.appendChild(cursor);
+
+        /**
+         * The core typing function, now only manipulating the container's inner HTML.
+         */
+        function typeWriter() {
+            if (index < text.length) {
+                // Insert the new character, keeping the existing content
+                container1.innerHTML = text.substring(0, index + 1) + ' '; 
+                
+                // Re-append the cursor after the text
+                container1.appendChild(cursor);
+                
+                index++;
+                setTimeout(typeWriter, 5); // typing speed
+            } else {
+                // Remove cursor once typing is complete
+                cursor.remove();
+            }
+        }
+
+        window.onload = typeWriter;
+</script>
+
+<script >
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // --- Refactored Global Variable Declarations (Prefix: gad) ---
+        const gadAssistDotEl = document.getElementById('gad-assist-dot');
+        const gadRadialMenuEl = document.getElementById('gad-dot-menu'); 
+        const gadMenuItems = gadRadialMenuEl.querySelectorAll('.gad-menu-item');
+        const gadModal = document.getElementById('gad-action-modal');
+        const gadModalTitle = document.getElementById('gad-modal-title');
+        const gadModalContent = document.getElementById('gad-modal-content');
+
+        let gadIsDragging = false;
+        let gadStartX, gadStartY, gadInitialX, gadInitialY;
+        const GAD_DOT_POSITION_KEY = 'gadAssistDotPosition'; // Unique localStorage key
+        const PADDING = 10; 
+        
+        let gadTemporaryMenuCenter = { left: null, top: null }; 
+        const RADIAL_MENU_RADIUS = 120; 
+        const ITEM_SIZE = 80; 
+        
+        // --- Refactored Three.js Variables (Prefix: gad) ---
+        let gadScene, gadCamera, gadRenderer, gadParticles, gadParticleGeometry, gadParticleMaterial;
+        const NUM_PARTICLES = 500;
+        const PARTICLE_SPEED = 0.005;
+
+        // --- Utility Functions ---
+
+        /**
+         * Initializes the Three.js scene for the particle background.
+         */
+        function initGadThreeJS() {
+            const canvas = document.getElementById('gad-bg-canvas');
+            
+            gadScene = new THREE.Scene();
+            
+            // Camera setup
+            const aspect = window.innerWidth / window.innerHeight;
+            const size = 10;
+            gadCamera = new THREE.OrthographicCamera(-size * aspect, size * aspect, size, -size, 0.1, 100);
+            gadCamera.position.z = 1;
+
+            // Renderer setup
+            gadRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            gadRenderer.setSize(window.innerWidth, window.innerHeight);
+            gadRenderer.setPixelRatio(window.devicePixelRatio);
+            gadRenderer.setClearColor(0x000000, 0); 
+
+            // Particle Geometry
+            gadParticleGeometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(NUM_PARTICLES * 3);
+            
+            for (let i = 0; i < NUM_PARTICLES * 3; i += 3) {
+                positions[i] = (Math.random() - 0.5) * 20; 
+                positions[i + 1] = (Math.random() - 0.5) * 20;
+                positions[i + 2] = (Math.random() - 0.5) * 10; 
+            }
+            
+            gadParticleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            // Particle Material
+            gadParticleMaterial = new THREE.PointsMaterial({
+                color: 0x47caff, 
+                size: 0.05,
+                blending: THREE.AdditiveBlending, 
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
+            });
+
+            // Create Points object
+            gadParticles = new THREE.Points(gadParticleGeometry, gadParticleMaterial);
+            gadScene.add(gadParticles);
+
+            // Start the animation loop
+            animateGadBackground();
+            
+            window.addEventListener('resize', onGadWindowResize);
+        }
+        
+        /**
+         * Handles window resizing to keep the 3D canvas responsive.
+         */
+        function onGadWindowResize() {
+            const aspect = window.innerWidth / window.innerHeight;
+            const size = 10;
+            gadCamera.left = -size * aspect;
+            gadCamera.right = size * aspect;
+            gadCamera.top = size;
+            gadCamera.bottom = -size;
+            gadCamera.updateProjectionMatrix();
+            gadRenderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        /**
+         * The Three.js animation loop.
+         */
+        function animateGadBackground() {
+            requestAnimationFrame(animateGadBackground);
+
+            // Rotate the entire particle system slightly
+            gadParticles.rotation.z += 0.0005;
+            gadParticles.rotation.y += 0.0001;
+
+            // Move each particle down and wrap it around
+            const positions = gadParticles.geometry.attributes.position.array;
+            for (let i = 1; i < NUM_PARTICLES * 3; i += 3) {
+                positions[i] -= PARTICLE_SPEED; // Move down (Y-axis)
+                
+                // If particle moves off the bottom, reposition it to the top
+                if (positions[i] < -10) { 
+                    positions[i] = 10;
+                    positions[i-1] = (Math.random() - 0.5) * 20; // Random X
+                    positions[i+1] = (Math.random() - 0.5) * 10; // Random Z
+                }
+            }
+            gadParticles.geometry.attributes.position.needsUpdate = true;
+
+
+            gadRenderer.render(gadScene, gadCamera);
+        }
+
+        /**
+         * Closes the radial menu and snaps the dot back to the edge.
+         */
+        function closeGadMenu() {
+            gadRadialMenuEl.classList.remove('gad-show');
+            gadAssistDotEl.classList.remove('gad-menu-open');
+            
+            if (gadTemporaryMenuCenter.left !== null) {
+                // Restore dot to its pre-menu-open position
+                gadAssistDotEl.style.left = `${gadTemporaryMenuCenter.left}px`;
+                gadAssistDotEl.style.top = `${gadTemporaryMenuCenter.top}px`;
+                gadTemporaryMenuCenter.left = null;
+                gadTemporaryMenuCenter.top = null;
+            }
+
+            gadMenuItems.forEach(item => {
+                item.classList.remove('gad-active');
+            });
+            
+            snapGadDotToEdge();
+        }
+
+        /**
+         * Calculates the radial position for each menu item, ensuring the entire menu 
+         * stays on screen. It returns the calculated center point coordinates for the dot.
+         */
+        function positionGadRadialMenu() {
+            const dotRect = gadAssistDotEl.getBoundingClientRect();
+            
+            const dotSize = dotRect.width;
+            const dotCenterX = dotRect.left + dotSize / 2;
+            const dotCenterY = dotRect.top + dotSize / 2;
+            
+            const menuDiameter = 2 * RADIAL_MENU_RADIUS + ITEM_SIZE; 
+            
+            // 2. Calculate the boundaries of the potential radial menu
+            const minX = dotCenterX - menuDiameter / 2;
+            const maxX = dotCenterX + menuDiameter / 2;
+            const minY = dotCenterY - menuDiameter / 2;
+            const maxY = dotCenterY + menuDiameter / 2;
+
+            // 3. Calculate necessary shifts to keep the entire menu on screen
+            let shiftX = 0;
+            let shiftY = 0;
+
+            if (minX < PADDING) { shiftX = PADDING - minX; } 
+            else if (maxX > window.innerWidth - PADDING) { shiftX = (window.innerWidth - PADDING) - maxX; }
+
+            if (minY < PADDING) { shiftY = PADDING - minY; } 
+            else if (maxY > window.innerHeight - PADDING) { shiftY = (window.innerHeight - PADDING) - maxY; }
+            
+            // 4. Adjusted center point
+            const adjustedCenterX = dotCenterX + shiftX;
+            const adjustedCenterY = dotCenterY + shiftY;
+
+            // 5. Calculate and apply item positions
+            const numItems = gadMenuItems.length;
+            const angleStep = 360 / numItems;
+
+            gadMenuItems.forEach((item, index) => {
+                // Offset by -90 degrees (or 270) to start the first item at the top
+                const angle = index * angleStep; 
+                const radians = (angle - 90) * (Math.PI / 180); 
+
+                const dx = RADIAL_MENU_RADIUS * Math.cos(radians);
+                const dy = RADIAL_MENU_RADIUS * Math.sin(radians);
+                
+                const itemLeft = adjustedCenterX + dx - (ITEM_SIZE / 2);
+                const itemTop = adjustedCenterY + dy - (ITEM_SIZE / 2);
+
+                item.style.left = `${itemLeft}px`;
+                item.style.top = `${itemTop}px`;
+                
+                item.classList.add('gad-active'); 
+            });
+            
+            return { centerX: adjustedCenterX, centerY: adjustedCenterY };
+        }
+
+        /**
+         * Saves the current position of the dot to localStorage.
+         */
+        function saveGadPosition() {
+            const top = parseFloat(gadAssistDotEl.style.top.replace('px', ''));
+            const left = parseFloat(gadAssistDotEl.style.left.replace('px', ''));
+
+            const pos = { top, left };
+
+            if (!isNaN(top) && !isNaN(left)) {
+                try {
+                    localStorage.setItem(GAD_DOT_POSITION_KEY, JSON.stringify(pos));
+                } catch (e) {
+                    console.error("Could not save dot position to localStorage.", e);
+                }
+            }
+        }
+
+        /**
+         * Loads and applies the last saved position, clamping it to the viewport.
+         */
+        function loadGadPosition() {
+            try {
+                const savedPos = localStorage.getItem(GAD_DOT_POSITION_KEY);
+                if (savedPos) {
+                    const pos = JSON.parse(savedPos);
+                    const dotSize = gadAssistDotEl.offsetWidth;
+                    const maxLeft = window.innerWidth - dotSize - PADDING;
+                    const maxTop = window.innerHeight - dotSize - PADDING;
+
+                    // Ensure loaded position is within boundaries
+                    gadAssistDotEl.style.left = `${Math.min(maxLeft, Math.max(PADDING, pos.left))}px`;
+                    gadAssistDotEl.style.top = `${Math.min(maxTop, Math.max(PADDING, pos.top))}px`;
+                }
+            } catch (e) {
+                console.warn("No saved dot position found or error parsing position.", e);
+            }
+        }
+
+        /**
+         * Snaps the dot closer to the nearest vertical edge (left or right).
+         */
+        function snapGadDotToEdge() {
+            if (gadRadialMenuEl.classList.contains('gad-show') || gadIsDragging) return;
+            
+            const dotSize = gadAssistDotEl.offsetWidth;
+            const currentLeft = parseFloat(gadAssistDotEl.style.left.replace('px', ''));
+            const centerPoint = window.innerWidth / 2;
+            let finalLeft;
+
+            if (currentLeft + dotSize / 2 < centerPoint) {
+                // Snap to left
+                finalLeft = PADDING;
+            } else {
+                // Snap to right
+                finalLeft = window.innerWidth - dotSize - PADDING;
+            }
+
+            gadAssistDotEl.style.left = `${finalLeft}px`;
+            saveGadPosition();
+        }
+
+        /**
+         * Toggles the visibility of the menu.
+         */
+        function toggleGadMenu() {
+            if (gadRadialMenuEl.classList.contains('gad-show')) {
+                closeGadMenu();
+            } else {
+                gadRadialMenuEl.classList.add('gad-show');
+                gadAssistDotEl.classList.add('gad-menu-open');
+                
+                // 1. Calculate and apply menu item positions
+                const newCenter = positionGadRadialMenu(); 
+                
+                // 2. Store current dot position before moving it to the center
+                gadTemporaryMenuCenter.left = parseFloat(gadAssistDotEl.style.left.replace('px', ''));
+                gadTemporaryMenuCenter.top = parseFloat(gadAssistDotEl.style.top.replace('px', ''));
+
+                // 3. Move the dot to the calculated center of the radial menu
+                const dotSize = gadAssistDotEl.offsetWidth;
+                gadAssistDotEl.style.left = `${newCenter.centerX - (dotSize / 2)}px`;
+                gadAssistDotEl.style.top = `${newCenter.centerY - (dotSize / 2)}px`;
+            }
+        }
+        
+        // --- Refactored Event Handlers ---
+
+        function gadPointerDown(e) {
+            if (e.button !== 0 && e.pointerType !== 'touch') return;
+            e.preventDefault();
+
+            if (gadRadialMenuEl.classList.contains('gad-show')) {
+                gadIsDragging = false;
+                closeGadMenu();
+                return;
+            }
+
+            gadIsDragging = true;
+            gadInitialX = e.clientX;
+            gadInitialY = e.clientY;
+
+            const currentLeft = parseFloat(gadAssistDotEl.style.left.replace('px', '') || gadAssistDotEl.offsetLeft);
+            const currentTop = parseFloat(gadAssistDotEl.style.top.replace('px', '') || gadAssistDotEl.offsetTop);
+
+            gadStartX = gadInitialX - currentLeft;
+            gadStartY = gadInitialY - currentTop;
+
+            gadAssistDotEl.setPointerCapture(e.pointerId);
+            gadAssistDotEl.style.transition = 'none';
+        }
+
+        function gadPointerMove(e) {
+            if (!gadIsDragging) return;
+            e.preventDefault();
+
+            let newLeft = e.clientX - gadStartX;
+            let newTop = e.clientY - gadStartY;
+
+            const dotSize = gadAssistDotEl.offsetWidth;
+            const maxLeft = window.innerWidth - dotSize - PADDING;
+            const maxTop = window.innerHeight - dotSize - PADDING;
+
+            newLeft = Math.min(maxLeft, Math.max(PADDING, newLeft));
+            newTop = Math.min(maxTop, Math.max(PADDING, newTop));
+
+            gadAssistDotEl.style.left = `${newLeft}px`;
+            gadAssistDotEl.style.top = `${newTop}px`;
+        }
+
+        function gadPointerUp(e) {
+            if (!gadIsDragging) return;
+
+            const finalX = e.clientX;
+            const finalY = e.clientY;
+
+            gadAssistDotEl.releasePointerCapture(e.pointerId);
+            gadAssistDotEl.style.transition = 'left 0.3s ease-out, top 0.3s ease-out, opacity 0.2s ease, background-color 0.1s';
+            gadIsDragging = false;
+
+            const distance = Math.sqrt(Math.pow(finalX - gadInitialX, 2) + Math.pow(finalY - gadInitialY, 2));
+
+            if (distance < 5) {
+                toggleGadMenu(); // It was a click
+            } else {
+                saveGadPosition(); // It was a drag
+                snapGadDotToEdge();
+            }
+        }
+
+        function handleGadMenuItemClick(e) {
+            const action = e.currentTarget.dataset.action;
+            closeGadMenu();
+            
+            switch (action) {
+                case 'GitHub':
+                    const githubUrl = 'https://github.com/ThenujayaPerera'; 
+                    window.open(githubUrl, '_blank');
+                    showGadMessage('Opening GitHub in new tab...');
+                    break;
+                case 'Contact':
+                     window.scrollTo({ top: 5250, behavior: 'smooth' });
+                    
+                    break;
+                case 'Top':
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    setTimeout(() => showGadMessage('Scrolled to Top!'), 350); 
+                    break;
+                case 'Share':
+                    copyGadToClipboard(window.location.href, 'Link copied to clipboard!');
+                    break;
+                case 'DarkMode':
+                    toggleGadDarkMode();
+                    break;
+                case 'Support':
+                    showGadModal('Support & Help', 'call +94 77 386 6749 for assistance or email se1nu2ka3@gmail.com');
+                    break;
+                default:
+                    showGadMessage(`Unknown action: ${action}`);
+            }
+        }
+        
+        // --- Action Implementation Functions (Refactored) ---
+        
+        function showGadModal(title, content) {
+            gadModalTitle.textContent = title;
+            gadModalContent.textContent = content;
+            gadModal.classList.remove('hidden');
+            gadModal.classList.add('flex');
+        }
+        
+        function showGadMessage(text) {
+            const message = document.createElement('div');
+            message.textContent = text;
+            message.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-sky-600 text-white p-4 rounded-lg shadow-2xl z-[1001] opacity-0 transition-opacity duration-300 pointer-events-none';
+            document.body.appendChild(message);
+            
+            setTimeout(() => { message.style.opacity = '1'; }, 10);
+            setTimeout(() => {
+                message.style.opacity = '0';
+                message.addEventListener('transitionend', () => message.remove());
+            }, 1500);
+        }
+
+        function copyGadToClipboard(text, successMessage) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                // Use document.execCommand('copy') for reliable cross-browser clipboard access in constrained environments
+                document.execCommand('copy'); 
+                showGadMessage(successMessage || 'Content copied!');
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                showGadMessage('Failed to copy. Try selecting manually.');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function toggleGadDarkMode() {
+            const isLightMode = document.body.classList.toggle('gad-light-mode');
+            const buttonText = isLightMode ? 'Dark Mode' : 'Light Mode';
+            const buttonIconEl = document.querySelector('[data-action="DarkMode"] span');
+            if (buttonIconEl) {
+                buttonIconEl.textContent = buttonText;
+            }
+            const message = isLightMode ? 'Light Mode Enabled ☀️' : 'Dark Mode Enabled 🌙';
+            
+        }
+
+        // --- Initialization ---
+
+        window.addEventListener('load', () => {
+            // Initialize 3D Background
+            initGadThreeJS(); 
+
+            // Set initial default position for the dot
+            gadAssistDotEl.style.position = 'fixed';
+            gadAssistDotEl.style.left = '0px';
+            gadAssistDotEl.style.top = '100%';
+
+            loadGadPosition();
+            snapGadDotToEdge(); 
+
+            // Setup Draggable/Clickable Event Listeners
+            gadAssistDotEl.addEventListener('pointerdown', gadPointerDown);
+            window.addEventListener('pointermove', gadPointerMove);
+            window.addEventListener('pointerup', gadPointerUp);
+            
+            // Setup Menu Item Clicks
+            gadMenuItems.forEach(item => {
+                item.addEventListener('click', handleGadMenuItemClick);
+            });
+
+            // Handle Resize
+            window.addEventListener('resize', () => {
+                snapGadDotToEdge();
+                // If menu is open, recalculate positions on resize
+                if (gadRadialMenuEl.classList.contains('gad-show')) {
+                    const newCenter = positionGadRadialMenu();
+                    const dotSize = gadAssistDotEl.offsetWidth;
+                    gadAssistDotEl.style.left = `${newCenter.centerX - (dotSize / 0.1)}px`;
+                    gadAssistDotEl.style.top = `${newCenter.centerY - (dotSize / 0.1)}px`;
+                }
+            });
+
+            // Close the menu if the user clicks the background overlay
+            document.addEventListener('click', (e) => {
+                // If click target is the menu overlay and the menu is open
+                if (e.target === gadRadialMenuEl && gadRadialMenuEl.classList.contains('gad-show')) {
+                    closeGadMenu();
+                }
+            });
+        });
+
+
+
+
+window.addEventListener("scroll", () => {
+  let s = window.scrollY;
+  if (s > 300) {
+    document.getElementById("scrollImg").style.transform =
+    `translateX(${300 * -5.4}px) translateY(${0-(s-230) }px)`; 
+
+   }
+   
+});
+
+
+
+
+
+
+const scrollElement = document.getElementById("scrollImg");
+        
+        window.addEventListener("scroll", () => {
+            const s = window.scrollY;
+            const maxScroll = 300; // Define max scroll distance for the effect
+
+            if (s <= maxScroll) {
+                // Parallax Calculations
+                // -50% is the initial centering value. 
+                // We add the dynamic pixel offset to the -50% using calc() logic.
+                const parallaxX = s * -2.9; // Moves left slowly
+                const parallaxY = s * 1.0; // Moves up quickly (out of view)
+                const opacity = 1 - (s / maxScroll); // Fades out completely at maxScroll
+
+                scrollElement.style.transform = `translate(calc(-50% + ${parallaxX}px), calc(-50% + ${parallaxY}px))`;
+                
+
+
+            } 
+          
+        });
+
+
+
+
+
+
+
+
+
+
+         
+
+/**
+ * Executes the scroll observation logic once the HTML document structure is ready.
+ * Using 'DOMContentLoaded' ensures the script runs early and does not interfere with 
+ * functions attached to the later 'load' event (like some typing animations).
+ * * The code is wrapped in an anonymous function attached to DOMContentLoaded to prevent 
+ * global variable clashes (addressing the 'not collapse' concern).
+ */
+window.addEventListener('DOMContentLoaded', () => {
+    // Selects all DOM elements tagged for the scroll transition
+    const apparitionNodes = document.querySelectorAll('.kinetic-reveal');
+
+    // Configuration for the Intersection Observer
+    const visibilityThresholds = {
+        root: null, // Watch intersections relative to the viewport
+        rootMargin: '0px',
+        threshold: 0.1 // Triggers when 10% of the element is visible (0.0 to 1.0)
+    };
+
+    /**
+     * Determines which elements have entered the viewport and triggers their transition.
+     * @param {IntersectionObserverEntry[]} observedEntries - List of elements being watched.
+     * @param {IntersectionObserver} viewportSentinel - The observer instance.
+     */
+    const apparitionDispatch = (observedEntries, viewportSentinel) => {
+        observedEntries.forEach(entry => {
+            // Check if the current element is intersecting (visible)
+            if (entry.isIntersecting) {
+                // Apply the visible state class to start the CSS transition
+                entry.target.classList.add('state-manifest');
+                // Stop watching this element to prevent re-triggering the animation
+                viewportSentinel.unobserve(entry.target);
+            }
+        });
+    };
+
+    // Initialize the Intersection Observer (our 'Viewport Sentinel')
+    const viewportSentinel = new IntersectionObserver(apparitionDispatch, visibilityThresholds);
+
+    // Instruct the sentinel to start watching all target nodes
+    apparitionNodes.forEach(node => {
+        viewportSentinel.observe(node);
+    });
+});
+
+
+
+
+
+ /* -----------------------
+       Contact form: basic UI feedback (no backend)
+       ----------------------- */
+    (function(){
+      const form = document.getElementById('contact-form');
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        alert('Thanks! This is a demo contact form. Replace with your backend endpoint to receive messages.');
+        form.reset();
+      });
+    })();
+
+
+
+
+    function whatsapp(){
+       
+      showGadModal('contact via WhatsApp...+94 77 386 6749');
+    }
+    function email(){
+      showGadModal('contact via email...se1nu2ka3@gmail.com');
+    }
+
+
+     
+
+</script>
+
+
+
+</body>
+</html>
+    
